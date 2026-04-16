@@ -1,6 +1,6 @@
 # Real-Time ASL Recognition System
 
-A real-time American Sign Language (ASL) recognition system for **36 classes**, covering **letters A–Z** and **digits 0–9**. This project combines **transfer learning**, **custom webcam fine-tuning**, **MediaPipe hand detection**, and **Llama-based post-processing** to move from offline image classification to a more practical live webcam recognition pipeline. :contentReference[oaicite:0]{index=0}
+A real-time American Sign Language (ASL) recognition system for **36 classes**, covering **letters A–Z** and **digits 0–9**. This project combines **transfer learning**, **custom webcam fine-tuning**, **MediaPipe hand detection**, and **Llama-based post-processing** to move from offline image classification to a more practical live webcam recognition pipeline. 
 
 ---
 
@@ -26,9 +26,9 @@ This project used three data sources:
 
 ## Project Overview
 
-The goal of this project was to build an ASL recognition system that could accurately classify static hand signs and then extend that system into a real-time webcam demo. The project began with image classification using two public Kaggle datasets for ASL alphabet signs and ASL digits. After evaluating multiple pretrained CNN models, the best-performing model was selected and further fine-tuned on a custom-collected webcam dataset to improve live performance. :contentReference[oaicite:1]{index=1}
+The goal of this project was to build an ASL recognition system that could accurately classify static hand signs and then extend that system into a real-time webcam demo. The project began with image classification using two public Kaggle datasets for ASL alphabet signs and ASL digits. After evaluating multiple pretrained CNN models, the best-performing model was selected and further fine-tuned on a custom-collected webcam dataset to improve live performance. 
 
-A major challenge in this project was the **domain gap** between benchmark datasets and real webcam input. The public datasets were collected in controlled settings, while live webcam inference introduced variation in lighting, framing, background, handedness, and motion. To address this, I collected a custom webcam dataset, fine-tuned the selected model, and improved the live inference pipeline using **MediaPipe-based hand localization** and **Llama-based post-processing**. :contentReference[oaicite:2]{index=2}
+A major challenge in this project was the **domain gap** between benchmark datasets and real webcam input. The public datasets were collected in controlled settings, while live webcam inference introduced variation in lighting, framing, background, handedness, and motion. To address this, I collected a custom webcam dataset, fine-tuned the selected model, and improved the live inference pipeline using **MediaPipe-based hand localization** and **Llama-based post-processing**.
 
 ---
 
@@ -48,21 +48,21 @@ A major challenge in this project was the **domain gap** between benchmark datas
 - Custom webcam dataset for domain adaptation
 - Fine-tuning of **ResNet18** on webcam images
 - Real-time webcam demo using **MediaPipe** hand detection
-- Post-processing with **Llama-3.1-8B-Instant API** for more meaningful word and sentence formation :contentReference[oaicite:3]{index=3}
+- Post-processing with **Llama-3.1-8B-Instant API** for more meaningful word and sentence formation 
 
 ---
 
 ## Motivation
 
-ASL recognition is an important application of deep learning in **assistive technology**, **computer vision**, and **human-computer interaction**. A reliable ASL recognition system can help improve accessibility by allowing sign language users to interact more naturally with digital systems. :contentReference[oaicite:4]{index=4}
+ASL recognition is an important application of deep learning in **assistive technology**, **computer vision**, and **human-computer interaction**. A reliable ASL recognition system can help improve accessibility by allowing sign language users to interact more naturally with digital systems. 
 
-While many image classification models perform well on benchmark datasets, real-time deployment is significantly harder. This project explores not only classification performance, but also the practical issues involved in taking a model from offline evaluation to a live webcam setting. :contentReference[oaicite:5]{index=5}
+While many image classification models perform well on benchmark datasets, real-time deployment is significantly harder. This project explores not only classification performance, but also the practical issues involved in taking a model from offline evaluation to a live webcam setting. 
 
 ---
 
 ## Datasets
 
-This project used three data sources: :contentReference[oaicite:6]{index=6}
+This project used three data sources: 
 
 ### 1. ASL Alphabet Dataset
 - Source: **Kaggle**
@@ -91,7 +91,7 @@ This project used three data sources: :contentReference[oaicite:6]{index=6}
 
 ## Task Definition
 
-The main task is **36-class static hand-sign classification**, where the model predicts the correct label from an input image. The label space includes: :contentReference[oaicite:7]{index=7}
+The main task is **36-class static hand-sign classification**, where the model predicts the correct label from an input image. The label space includes: 
 
 - **26 letters:** A–Z
 - **10 digits:** 0–9
@@ -101,7 +101,7 @@ The project was later extended into a **real-time webcam recognition system**, w
 1. detects the hand region from webcam frames,
 2. classifies the detected sign,
 3. accumulates character predictions,
-4. refines the output into more meaningful text using an LLM. :contentReference[oaicite:8]{index=8}
+4. refines the output into more meaningful text using an LLM.
 
 ---
 
@@ -114,7 +114,7 @@ The first stage of the project involved comparing multiple pretrained CNN models
 - **MobileNetV2**
 - **EfficientNet-B0**
 
-The purpose of this comparison was to identify the most effective architecture for static ASL sign classification. :contentReference[oaicite:9]{index=9}
+The purpose of this comparison was to identify the most effective architecture for static ASL sign classification.
 
 ### 2. Preprocessing and Training
 Because the public datasets had different original resolutions, all images were resized to a common size before training. Standard normalization was applied using ImageNet statistics, and augmentation techniques were used to improve generalization. Typical preprocessing included:
@@ -123,7 +123,7 @@ Because the public datasets had different original resolutions, all images were 
 - normalization
 - rotations
 - color jitter
-- other augmentation steps depending on the experiment :contentReference[oaicite:10]{index=10}
+- other augmentation steps depending on the experiment 
 
 ### 3. Robustness Testing
 To better understand model behavior beyond clean benchmark images, robustness experiments were performed under:
@@ -131,19 +131,19 @@ To better understand model behavior beyond clean benchmark images, robustness ex
 - blur
 - brightness changes
 - contrast changes
-- additive noise :contentReference[oaicite:11]{index=11}
-
+- additive noise
+  
 ### 4. Segmentation Experiment
-A background segmentation experiment was performed to reduce the visual mismatch between the alphabet dataset and the digits dataset, especially because the digits dataset had a pure black background while the alphabet dataset had more variation. :contentReference[oaicite:12]{index=12}
+A background segmentation experiment was performed to reduce the visual mismatch between the alphabet dataset and the digits dataset, especially because the digits dataset had a pure black background while the alphabet dataset had more variation.
 
 ### 5. Webcam Fine-Tuning
-After model comparison, **ResNet18** was selected as the final model and fine-tuned on the custom webcam dataset. This step was critical for reducing the domain gap between public datasets and real-time webcam input. :contentReference[oaicite:13]{index=13}
+After model comparison, **ResNet18** was selected as the final model and fine-tuned on the custom webcam dataset. This step was critical for reducing the domain gap between public datasets and real-time webcam input.
 
 ### 6. Real-Time Inference Pipeline
-The live demo used **MediaPipe** to detect and localize the hand region from webcam frames before classification. This ensured that the classifier operated on a cropped hand image rather than the full webcam frame. :contentReference[oaicite:14]{index=14}
+The live demo used **MediaPipe** to detect and localize the hand region from webcam frames before classification. This ensured that the classifier operated on a cropped hand image rather than the full webcam frame.
 
 ### 7. LLM-Based Post-Processing
-After frame-level predictions were accumulated into character sequences, the output was passed through the **Llama-3.1-8B-Instant API** to improve word and sentence formation. This was especially useful for converting noisy character streams into more meaningful text while preserving important cases such as digits and acronym-like outputs. :contentReference[oaicite:15]{index=15}
+After frame-level predictions were accumulated into character sequences, the output was passed through the **Llama-3.1-8B-Instant API** to improve word and sentence formation. This was especially useful for converting noisy character streams into more meaningful text while preserving important cases such as digits and acronym-like outputs. 
 
 ---
 
@@ -155,9 +155,9 @@ The final webcam-adapted model was based on **ResNet18**. During fine-tuning:
 - the final classifier head was replaced
 - dropout was added before the final linear layer
 - the model was fine-tuned on the custom webcam dataset
-- early stopping was used to avoid unnecessary training :contentReference[oaicite:16]{index=16}
+- early stopping was used to avoid unnecessary training
 
-This fine-tuning step was one of the most important improvements for real-time performance. :contentReference[oaicite:17]{index=17}
+This fine-tuning step was one of the most important improvements for real-time performance.
 
 ---
 
@@ -171,9 +171,9 @@ The real-time demo pipeline works as follows:
 4. Preprocess the crop for the classifier
 5. Run sign classification using the fine-tuned ResNet18 model
 6. Accumulate predictions over time
-7. Use Llama-based post-processing to convert the sequence into more meaningful output :contentReference[oaicite:18]{index=18}
+7. Use Llama-based post-processing to convert the sequence into more meaningful output
 
-This allowed the project to go beyond simple image classification and move toward a more interactive ASL recognition system. :contentReference[oaicite:19]{index=19}
+This allowed the project to go beyond simple image classification and move toward a more interactive ASL recognition system. 
 
 ---
 
@@ -186,7 +186,7 @@ One of the biggest findings of this project was that high offline accuracy did n
 - handedness mismatch
 - crop and preprocessing inconsistencies during live inference
 - difficulties with visually similar signs
-- challenges in handling dynamic signs or motion-heavy cases in a frame-based pipeline :contentReference[oaicite:20]{index=20}
+- challenges in handling dynamic signs or motion-heavy cases in a frame-based pipeline
 
 ---
 
@@ -201,12 +201,12 @@ This project did not stop at training a single model. Several strategies were ex
 - webcam fine-tuning
 - MediaPipe hand localization
 - debugging deployment-time preprocessing and crop issues
-- LLM prompt design and constraints for more reliable text output :contentReference[oaicite:21]{index=21}
+- LLM prompt design and constraints for more reliable text output 
 
 ---
 
 ## Results Summary
 
-The project achieved very strong offline classification performance on benchmark data, especially with **ResNet18**. However, live webcam performance initially lagged behind, which highlighted the importance of domain adaptation and pipeline debugging. :contentReference[oaicite:22]{index=22}
+The project achieved very strong offline classification performance on benchmark data, especially with **ResNet18**. However, live webcam performance initially lagged behind, which highlighted the importance of domain adaptation and pipeline debugging.
 
-After webcam fine-tuning and improvements to the real-time inference pipeline, live performance improved substantially. The final system demonstrated that deployment quality depends not only on benchmark accuracy, but also on preprocessing consistency, data distribution, and real-world adaptation. :contentReference[oaicite:23]{index=23}
+After webcam fine-tuning and improvements to the real-time inference pipeline, live performance improved substantially. The final system demonstrated that deployment quality depends not only on benchmark accuracy, but also on preprocessing consistency, data distribution, and real-world adaptation. 
