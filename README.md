@@ -51,10 +51,10 @@ A major challenge in this project was the **domain gap** between benchmark datas
   - **MobileNetV2**
   - **EfficientNet-B0**
 - Robustness testing under:
-  - blur
-  - brightness changes
-  - contrast changes
-  - noise perturbations
+  - Blur
+  - Brightness changes
+  - Contrast changes
+  - Noise perturbations
 - Background segmentation experiment to reduce dataset mismatch
 - Custom webcam dataset for domain adaptation
 - Fine-tuning of **ResNet18** on webcam images
@@ -80,10 +80,10 @@ The main task is **36-class static hand-sign classification**, where the model p
 
 The project was later extended into a **real-time webcam recognition system**, where the pipeline:
 
-1. detects the hand region from webcam frames,
-2. classifies the detected sign,
-3. accumulates character predictions,
-4. refines the output into more meaningful text using an LLM.
+1. Detects the hand region from webcam frames,
+2. Classifies the detected sign,
+3. Accumulates character predictions,
+4. Refines the output into more meaningful text using an LLM.
 
 ---
 
@@ -101,19 +101,18 @@ The purpose of this comparison was to identify the most effective architecture f
 ### 2. Preprocessing and Training
 Because the public datasets had different original resolutions, all images were resized to a common size before training. Standard normalization was applied using ImageNet statistics, and augmentation techniques were used to improve generalization. Typical preprocessing included:
 
-- image resizing
-- normalization
-- rotations
-- color jitter
-- other augmentation steps depending on the experiment 
+- Image resizing
+- Normalization
+- Rotations
+- Color jitter 
 
 ### 3. Robustness Testing
 To better understand model behavior beyond clean benchmark images, robustness experiments were performed under:
 
-- blur
-- brightness changes
-- contrast changes
-- additive noise
+- Blur
+- Brightness changes
+- Contrast changes
+- Additive noise
   
 ### 4. Segmentation Experiment
 A background segmentation experiment was performed to reduce the visual mismatch between the alphabet dataset and the digits dataset, especially because the digits dataset had a pure black background while the alphabet dataset had more variation.
@@ -133,11 +132,11 @@ After frame-level predictions were accumulated into character sequences, the out
 
 The final webcam-adapted model was based on **ResNet18**. During fine-tuning:
 
-- pretrained weights from the earlier classification stage were loaded
-- the final classifier head was replaced
-- dropout was added before the final linear layer
-- the model was fine-tuned on the custom webcam dataset
-- early stopping was used to avoid unnecessary training
+- Pretrained weights from the earlier classification stage were loaded
+- The final classifier head was replaced
+- Dropout was added before the final linear layer
+- The model was fine-tuned on the custom webcam dataset
+- Early stopping was used to avoid unnecessary training
 
 This fine-tuning step was one of the most important improvements for real-time performance.
 
@@ -163,12 +162,12 @@ This allowed the project to go beyond simple image classification and move towar
 
 One of the biggest findings of this project was that high offline accuracy did not automatically translate to strong webcam performance. The major challenges included:
 
-- domain gap between benchmark datasets and live webcam input
-- differences in background and image style between the alphabet and digit datasets
-- handedness mismatch
-- crop and preprocessing inconsistencies during live inference
-- difficulties with visually similar signs
-- challenges in handling dynamic signs or motion-heavy cases in a frame-based pipeline
+- Domain gap between benchmark datasets and live webcam input
+- Differences in background and image style between the alphabet and digit datasets
+- Handedness mismatch
+- Crop and preprocessing inconsistencies during live inference
+- Difficulties with visually similar signs
+- Challenges in handling dynamic signs or motion-heavy cases in a frame-based pipeline
 
 ---
 
@@ -176,13 +175,13 @@ One of the biggest findings of this project was that high offline accuracy did n
 
 This project did not stop at training a single model. Several strategies were explored to improve performance:
 
-- model comparison across multiple pretrained CNNs
-- robustness testing under perturbations
-- segmentation to reduce background mismatch
-- custom webcam data collection
-- webcam fine-tuning
+- Model comparison across multiple pretrained CNNs
+- Robustness testing under perturbations
+- Segmentation to reduce background mismatch
+- Custom webcam data collection
+- Webcam fine-tuning
 - MediaPipe hand localization
-- debugging deployment-time preprocessing and crop issues
+- Debugging deployment-time preprocessing and crop issues
 - LLM prompt design and constraints for more reliable text output 
 
 ---
