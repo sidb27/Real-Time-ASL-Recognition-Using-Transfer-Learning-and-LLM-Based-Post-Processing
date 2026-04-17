@@ -18,7 +18,7 @@ This project used three data sources:
 - 10 digit classes: 0–9
 
 ### 3. Custom Webcam Dataset
-- Source:[Custom Webcam Dataset](https://huggingface.co/datasets/sidb27/Custom_ASL_Webcam_Dataset/tree/main)
+- Source: [Custom Webcam Dataset](https://huggingface.co/datasets/sidb27/Custom_ASL_Webcam_Dataset/tree/main)
 - Custom-collected dataset created for this project
 - 7,200 images total
 - 200 images per class across all 36 classes
