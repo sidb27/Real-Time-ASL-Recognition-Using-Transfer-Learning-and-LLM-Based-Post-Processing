@@ -13,7 +13,7 @@ This project used three data sources:
 - 26 letter classes: A–Z
 
 ### 2. ASL Digits Dataset
-- Source: [Kaggle ASL Digits Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)
+- Source: [Kaggle ASL Digits Dataset](https://www.kaggle.com/datasets/rayeed045/american-sign-language-digit-dataset))
 - Approximately 5,000 RGB images
 - 10 digit classes: 0–9
 
