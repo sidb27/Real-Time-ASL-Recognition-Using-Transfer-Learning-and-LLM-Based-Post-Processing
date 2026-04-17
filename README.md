@@ -25,6 +25,19 @@ This project used three data sources:
 
 ---
 
+## Running the Webcam Demo
+
+To run the real-time webcam demo:
+[ASL-Finetuned-Resnet-Model](https://huggingface.co/sidb27/ASL-Finetuned-Resnet-Model)
+1. Download `best_resnet18_finetuned.pt` from the link attached above.
+2. Place the downloaded `.pt` file in the same location used to run the notebook.
+3. Open and run:
+
+```text
+03_ASL_Webcam_Demo.ipynb
+
+---
+
 ## Project Overview
 
 The goal of this project was to build an ASL recognition system that could accurately classify static hand signs and then extend that system into a real-time webcam demo. The project began with image classification using two public Kaggle datasets for ASL alphabet signs and ASL digits. After evaluating multiple pretrained CNN models, the best-performing model was selected and further fine-tuned on a custom-collected webcam dataset to improve live performance. 
