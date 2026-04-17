@@ -1,0 +1,14 @@
+torch
+torchvision
+numpy
+pillow
+opencv-python
+mediapipe
+scikit-learn
+matplotlib
+tqdm
+python-dotenv
+groq
+jupyter
+notebook
+ipykernel
