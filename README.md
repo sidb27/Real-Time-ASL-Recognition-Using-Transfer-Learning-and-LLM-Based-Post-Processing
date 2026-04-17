@@ -18,6 +18,7 @@ This project used three data sources:
 - 10 digit classes: 0–9
 
 ### 3. Custom Webcam Dataset
+- Source:[Custom Webcam Dataset](https://huggingface.co/datasets/sidb27/Custom_ASL_Webcam_Dataset/tree/main)
 - Custom-collected dataset created for this project
 - 7,200 images total
 - 200 images per class across all 36 classes
@@ -57,35 +58,6 @@ A major challenge in this project was the **domain gap** between benchmark datas
 ASL recognition is an important application of deep learning in **assistive technology**, **computer vision**, and **human-computer interaction**. A reliable ASL recognition system can help improve accessibility by allowing sign language users to interact more naturally with digital systems. 
 
 While many image classification models perform well on benchmark datasets, real-time deployment is significantly harder. This project explores not only classification performance, but also the practical issues involved in taking a model from offline evaluation to a live webcam setting. 
-
----
-
-## Datasets
-
-This project used three data sources: 
-
-### 1. ASL Alphabet Dataset
-- Source: **Kaggle**
-- Approximately **78,000 RGB images**
-- **26 letter classes:** A–Z
-- Original dataset also included extra classes such as **space**, **delete**, and **nothing**, which were removed for this project
-- Images were captured in a relatively controlled environment
-
-### 2. ASL Digits Dataset
-- Source: **Kaggle**
-- Approximately **5,000 RGB images**
-- **10 digit classes:** 0–9
-- Smaller than the alphabet dataset, which introduced imbalance when combined
-- Used a pure black background, unlike the alphabet dataset
-- Created by different people, introducing additional variation in appearance and pose
-
-### 3. Custom Webcam Dataset
-- **7,200 images total**
-- **200 images per class** across all 36 classes
-- For each class:
-  - **100 images captured using the left hand**
-  - **100 images captured using the right hand**
-- Collected to reduce the mismatch between benchmark datasets and real webcam input
 
 ---
 
