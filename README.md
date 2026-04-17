@@ -31,7 +31,7 @@ To run the real-time webcam demo:
 [ASL-Finetuned-Resnet-Model](https://huggingface.co/sidb27/ASL-Finetuned-Resnet-Model)
 1. Download `best_resnet18_finetuned.pt` from the link attached above.
 2. Place the downloaded `.pt` file in the same location used to run the notebook.
-3. Open and run: 03_ASL_Webcam_Demo.ipynb
+3. Open and run: [03_ASL_Webcam_Demo.ipynb](https://github.com/sidb27/Real-Time-ASL-Recognition-Using-Transfer-Learning-and-LLM-Based-Post-Processing/blob/main/03_ASL_Webcam_Demo.ipynb)
 
 ---
 
